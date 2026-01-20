@@ -1,20 +1,102 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Restaurant QR Management Frontend 🚀
 
-# Run and deploy your AI Studio app
+A production-ready **React + Vite** frontend application deployed on **AWS S3 and CloudFront** with a **fully automated CI/CD pipeline using GitHub Actions**.
 
-This contains everything you need to run your app locally.
+This project demonstrates real-world cloud deployment, automation, and DevOps best practices.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1jK2QFznu-JjXZrclqPDdWz2cJ4cHK1c_
+---
 
-## Run Locally
+## 🔗 Live Demo
 
-**Prerequisites:**  Node.js
+🌐 **Deployed via CloudFront (CDN):**  
+https://d62ys23woaplt.cloudfront.net
+
+---
+
+## 🏗️ Architecture Overview
+
+User Browser
+↓
+CloudFront (CDN + HTTPS + Cache)
+↓
+S3 Bucket (Private Static Files)
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **S3** stores the production build (`dist/`)
+- **CloudFront** serves content globally with low latency
+- **Origin Access Control (OAC)** ensures S3 is not publicly accessible
+- **GitHub Actions** automates build and deployment
+
+---
+
+## ⚙️ CI/CD Pipeline (GitHub Actions)
+
+On every push to the `main` branch:
+
+1. GitHub Actions checks out the code
+2. Installs dependencies
+3. Builds the Vite project
+4. Syncs build output to S3
+5. Invalidates CloudFront cache (`/*`)
+6. New version is live globally
+
+✅ Zero manual deployment  
+✅ Zero downtime  
+✅ Fully automated
+
+---
+
+## 🧠 Key Features
+
+- ⚡ Built with **Vite + React + TypeScript**
+- ☁️ Hosted on **AWS S3 (private bucket)**
+- 🌍 Served via **CloudFront CDN**
+- 🔐 Secure access using **Origin Access Control**
+- 🔄 SPA routing handled via CloudFront error rules
+- 🤖 Automated CI/CD with **GitHub Actions**
+- 🛡️ AWS IAM user with programmatic access for CI/CD
+
+---
+
+## 🧰 Tech Stack
+
+- **Frontend:** React, Vite, TypeScript
+- **Cloud:** AWS S3, AWS CloudFront, IAM
+- **CI/CD:** GitHub Actions
+- **Tooling:** AWS CLI, Git, Node.js
+
+---
+
+## 📂 Repository Structure
+
+.
+├── .github/workflows/deploy.yml # CI/CD pipeline
+├── components/ # UI components
+├── pages/ # Application pages
+├── services/ # API / service logic
+├── contexts/ # React context
+├── App.tsx
+├── index.tsx
+├── vite.config.ts
+├── package.json
+└── README.md
+
+
+---
+
+## 🚀 Run Locally
+
+### Prerequisites
+- Node.js (v18+ recommended)
+
+### Steps
+
+```bash
+git clone https://github.com/akshaysuthar64767/restaurant_qr_managements.git
+cd restaurant_qr_managements
+npm install
+npm run dev
+
+App will run at:
+
+http://localhost:5173
